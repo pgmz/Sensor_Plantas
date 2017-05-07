@@ -62,6 +62,7 @@ typedef enum{
 #define AD1CON1_AD12B_12_BIT_1_CH       1
 
 #define AD1CON1_SAMP_ENABLE             1
+#define AD1CON1_CONV_START              0
 
 #define AD1CON1_DONE_COMPLETED          1
 #define AD1CON1_DONE_NOT_COMPLETED      0

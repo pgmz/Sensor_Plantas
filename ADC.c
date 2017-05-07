@@ -6,18 +6,23 @@
  */
 
 
+
 #include "xc.h"
+
+#define FCY 20000000UL
+#include "libpic30.h"
 #include "ADC.h"
+
 
 uint8 ADC_init(){
     
     AD1CON1bits.AD12B = AD1CON1_AD12B_10_BIT_4_CH;  //Determine 10-bit to 4 channel config of ADC
-    AD1CON2bits.CHPS = CH0_CH1_CH2_CH3;             //Select active channels
+    AD1CON2bits.CHPS = CH0;             //Select active channels
     AD1CON2bits.VCFG = AVDD_AVSS;                    //Select that low voltage reference is internal VSS
                                                     //Select that high voltage reference is internal VSS
     
     AD1CON3bits.ADCS = 2;
-    //Select pot pins as analog inputs (AD1PCGGH 15 - 0 or AD1PCFGL15-0)
+    //Select port pins as analog inputs (AD1PCGGH 15 - 0 or AD1PCFGL15-0)
     
     AD1PCFGL = AD1PCFGL_ANALOG_MODE;
     
@@ -30,8 +35,8 @@ uint8 ADC_init(){
     
     AD1PCFGL = ~AD1PCFGL_ANALOG_MODE;
     AD1PCFGLbits.PCFG0 = AD1PCFGL_ANALOG_MODE;
-    AD1PCFGLbits.PCFG1 = AD1PCFGL_ANALOG_MODE;
-    AD1PCFGLbits.PCFG2 = AD1PCFGL_ANALOG_MODE;
+    //AD1PCFGLbits.PCFG1 = AD1PCFGL_ANALOG_MODE;
+    //AD1PCFGLbits.PCFG2 = AD1PCFGL_ANALOG_MODE;
         
     //Select sample/conversion sequence AD1CON1 7-5, AD1CON3 12-8
     
@@ -53,6 +58,9 @@ uint8 ADC_init(){
 
 void ADC_Start(){
     AD1CON1bits.SAMP = AD1CON1_SAMP_ENABLE;
+    __delay_ms(10);
+    AD1CON1bits.SAMP = AD1CON1_CONV_START;
+
 }
 
 uint8 ADC_Read_Done_Flag(){
@@ -64,5 +72,5 @@ void ADC_Clear_Done_Flag(){
 }
 
 uint16 ADC_Buffer(){
-    return (int)&ADC1BUF0;
+    return (uint16)ADC1BUF0;
 }

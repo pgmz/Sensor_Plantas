@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p33FJ64GP802 \
   -o \
-  dist/default/production/HelloWorld.X.production.elf \
+  dist/default/debug/HelloWorld.X.debug.elf \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/.. \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../support/PIC24E/gld \
@@ -15,12 +15,20 @@ Command:
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../support/dsPIC30F/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/main.o \
-  build/default/production/ADC.o \
-  build/default/production/DHT11_DD.o \
-  build/default/production/Timer1.o \
+  build/default/debug/main.o \
+  build/default/debug/ADC.o \
+  build/default/debug/DHT11_DD.o \
+  build/default/debug/Timer1.o \
+  -TC:\\Users\\PATRIC~1\\AppData\\Local\\Temp\\tmp00001308.00 \
+  -TC:\\Users\\PATRIC~1\\AppData\\Local\\Temp\\tmp00001308.01 \
+  -TC:\\Users\\PATRIC~1\\AppData\\Local\\Temp\\tmp00001308.02 \
+  -TC:\\Users\\PATRIC~1\\AppData\\Local\\Temp\\tmp00001308.03 \
+  -TC:\\Users\\PATRIC~1\\AppData\\Local\\Temp\\tmp00001308.04 \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp33FJ64GP802.gld.00 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_PK3=1 \
+  -Tp33FJ64GP802.gld.05 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -32,10 +40,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/HelloWorld.X.production.map \
+  -Map=dist/default/debug/HelloWorld.X.debug.map \
   --report-mem \
   --memorysummary \
-  dist/default/production/memoryfile.xml \
+  dist/default/debug/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -53,7 +61,7 @@ c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.
 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
                               (__crt_start_mode_normal)
 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                              build/default/production/ADC.o (___delay32)
+                              build/default/debug/ADC.o (___delay32)
 
 
 Selected CodeGuard Options:
@@ -101,8 +109,13 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
+reserve_data_0x800           0x800                0x20            0x20  (32)
+reserve_data_0x820           0x820                 0x2             0x2  (2)
+reserve_data_0x822           0x822                 0x2             0x2  (2)
+reserve_data_0x824           0x824                 0x2             0x2  (2)
+reserve_data_0x826           0x826                0x2a            0x2a  (42)
 
-                 Total data memory used (bytes):              0  (0) 
+                 Total data memory used (bytes):           0x50  (80) <1%
 
 
 Dynamic Memory Usage
@@ -110,9 +123,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x800                              0x4000  (16384)
+stack                        0x850                              0x3fb0  (16304)
 
-                 Maximum dynamic memory (bytes):         0x4000  (16384)
+                 Maximum dynamic memory (bytes):         0x3fb0  (16304)
 
 
 External Symbols in Program Memory (by address):
@@ -182,11 +195,39 @@ FUID3            0xf80016           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/main.o
-LOAD build/default/production/ADC.o
-LOAD build/default/production/DHT11_DD.o
-LOAD build/default/production/Timer1.o
+LOAD build/default/debug/main.o
+LOAD build/default/debug/ADC.o
+LOAD build/default/debug/DHT11_DD.o
+LOAD build/default/debug/Timer1.o
+
+reserve_data_0x800
+                    0x0800         0x20
+                    0x0820                  . = 0x20
+ *fill*             0x0800         0x2000
+
+reserve_data_0x820
+                    0x0820          0x2
+                    0x0822                  . = 0x2
+ *fill*             0x0820          0x200
+
+reserve_data_0x822
+                    0x0822          0x2
+                    0x0824                  . = 0x2
+ *fill*             0x0822          0x200
+
+reserve_data_0x824
+                    0x0824          0x2
+                    0x0826                  . = 0x2
+ *fill*             0x0824          0x200
+
+reserve_data_0x826
+                    0x0826         0x2a
+                    0x0850                  . = 0x2a
+ *fill*             0x0826         0x2a00
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_PK3 = 0x1
 LOAD p33FJ64GP802
 LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
@@ -291,37 +332,37 @@ __FUID3
 
 .debug_info       0x000000       0x102f
  *(.debug_info)
- .debug_info      0x000000        0x147 build/default/production/main.o
- .debug_info      0x000147        0x90b build/default/production/ADC.o
- .debug_info      0x000a52        0x516 build/default/production/DHT11_DD.o
- .debug_info      0x000f68         0xc7 build/default/production/Timer1.o
+ .debug_info      0x000000        0x147 build/default/debug/main.o
+ .debug_info      0x000147        0x90b build/default/debug/ADC.o
+ .debug_info      0x000a52        0x516 build/default/debug/DHT11_DD.o
+ .debug_info      0x000f68         0xc7 build/default/debug/Timer1.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x265
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x54 build/default/production/main.o
- .debug_abbrev    0x000054         0xee build/default/production/ADC.o
- .debug_abbrev    0x000142         0xed build/default/production/DHT11_DD.o
- .debug_abbrev    0x00022f         0x36 build/default/production/Timer1.o
+ .debug_abbrev    0x000000         0x54 build/default/debug/main.o
+ .debug_abbrev    0x000054         0xee build/default/debug/ADC.o
+ .debug_abbrev    0x000142         0xed build/default/debug/DHT11_DD.o
+ .debug_abbrev    0x00022f         0x36 build/default/debug/Timer1.o
 
 .debug_line       0x000000        0x227
  *(.debug_line)
- .debug_line      0x000000         0x55 build/default/production/main.o
- .debug_line      0x000055         0xd3 build/default/production/ADC.o
- .debug_line      0x000128         0xc8 build/default/production/DHT11_DD.o
- .debug_line      0x0001f0         0x37 build/default/production/Timer1.o
+ .debug_line      0x000000         0x55 build/default/debug/main.o
+ .debug_line      0x000055         0xd3 build/default/debug/ADC.o
+ .debug_line      0x000128         0xc8 build/default/debug/DHT11_DD.o
+ .debug_line      0x0001f0         0x37 build/default/debug/Timer1.o
 
 .debug_frame      0x000000        0x14c
  *(.debug_frame)
- .debug_frame     0x000000         0x30 build/default/production/main.o
- .debug_frame     0x000030         0xa0 build/default/production/ADC.o
- .debug_frame     0x0000d0         0x4c build/default/production/DHT11_DD.o
- .debug_frame     0x00011c         0x30 build/default/production/Timer1.o
+ .debug_frame     0x000000         0x30 build/default/debug/main.o
+ .debug_frame     0x000030         0xa0 build/default/debug/ADC.o
+ .debug_frame     0x0000d0         0x4c build/default/debug/DHT11_DD.o
+ .debug_frame     0x00011c         0x30 build/default/debug/Timer1.o
 
 .debug_str        0x000000         0x60
  *(.debug_str)
- .debug_str       0x000000         0x4d build/default/production/ADC.o
- .debug_str       0x00004d         0x13 build/default/production/DHT11_DD.o
+ .debug_str       0x000000         0x4d build/default/debug/ADC.o
+ .debug_str       0x00004d         0x13 build/default/debug/DHT11_DD.o
 
 .debug_loc
  *(.debug_loc)
@@ -333,13 +374,13 @@ __FUID3
                   0x000000         0xd3
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x1b build/default/production/main.o
+                  0x000000         0x1b build/default/debug/main.o
  .debug_pubnames
-                  0x00001b         0x6b build/default/production/ADC.o
+                  0x00001b         0x6b build/default/debug/ADC.o
  .debug_pubnames
-                  0x000086         0x31 build/default/production/DHT11_DD.o
+                  0x000086         0x31 build/default/debug/DHT11_DD.o
  .debug_pubnames
-                  0x0000b7         0x1c build/default/production/Timer1.o
+                  0x0000b7         0x1c build/default/debug/Timer1.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -347,13 +388,13 @@ __FUID3
 .debug_aranges    0x000000         0x60
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/main.o
+                  0x000000         0x18 build/default/debug/main.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/ADC.o
+                  0x000018         0x18 build/default/debug/ADC.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/DHT11_DD.o
+                  0x000030         0x18 build/default/debug/DHT11_DD.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/Timer1.o
+                  0x000048         0x18 build/default/debug/Timer1.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1324,7 +1365,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30
 LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/production/HelloWorld.X.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/HelloWorld.X.debug.elf elf32-pic30)
 LOAD FGS
 LOAD FSS
 LOAD FBS
@@ -1333,24 +1374,24 @@ LOAD default_isr
 .debug_pubtypes
                   0x000060        0x15b
  .debug_pubtypes
-                  0x000060         0x1d build/default/production/main.o
+                  0x000060         0x1d build/default/debug/main.o
  .debug_pubtypes
-                  0x00007d         0xb5 build/default/production/ADC.o
+                  0x00007d         0xb5 build/default/debug/ADC.o
  .debug_pubtypes
-                  0x000132         0x77 build/default/production/DHT11_DD.o
+                  0x000132         0x77 build/default/debug/DHT11_DD.o
  .debug_pubtypes
-                  0x0001a9         0x12 build/default/production/Timer1.o
+                  0x0001a9         0x12 build/default/debug/Timer1.o
 
 __c30_signature
                   0x0001bb         0x2a
  __c30_signature
-                  0x0001bb          0x6 build/default/production/main.o
+                  0x0001bb          0x6 build/default/debug/main.o
  __c30_signature
-                  0x0001c1          0x6 build/default/production/ADC.o
+                  0x0001c1          0x6 build/default/debug/ADC.o
  __c30_signature
-                  0x0001c7          0x6 build/default/production/DHT11_DD.o
+                  0x0001c7          0x6 build/default/debug/DHT11_DD.o
  __c30_signature
-                  0x0001cd          0x6 build/default/production/Timer1.o
+                  0x0001cd          0x6 build/default/debug/Timer1.o
  __c30_signature
                   0x0001d3          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
@@ -1360,24 +1401,24 @@ __c30_signature
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
-                  0xf8000e          0x2 build/default/production/main.o
+                  0xf8000e          0x2 build/default/debug/main.o
 
 .config_ALTI2C    0xf8000c          0x2
  .config_ALTI2C
-                  0xf8000c          0x2 build/default/production/main.o
+                  0xf8000c          0x2 build/default/debug/main.o
 
 .config_FWDTEN    0xf8000a          0x2
  .config_FWDTEN
-                  0xf8000a          0x2 build/default/production/main.o
+                  0xf8000a          0x2 build/default/debug/main.o
 
 .config_FCKSM     0xf80008          0x2
- .config_FCKSM    0xf80008          0x2 build/default/production/main.o
+ .config_FCKSM    0xf80008          0x2 build/default/debug/main.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/default/production/main.o
+ .config_IESO     0xf80006          0x2 build/default/debug/main.o
 
 .text             0x0002ce         0x72
- .text            0x0002ce         0x72 build/default/production/ADC.o
+ .text            0x0002ce         0x72 build/default/debug/ADC.o
                   0x0002ce                  _ADC_init
                   0x000314                  _ADC_Start
                   0x000324                  _ADC_Read_Done_Flag
@@ -1389,10 +1430,10 @@ __c30_signature
                   0x000340                  ___delay32
 
 .text             0x00035c         0x38
- .text            0x00035c         0x18 build/default/production/main.o
+ .text            0x00035c         0x18 build/default/debug/main.o
                   0x00035c                  _main
- .text            0x000374         0x18 build/default/production/DHT11_DD.o
+ .text            0x000374         0x18 build/default/debug/DHT11_DD.o
                   0x000374                  _DHT11_read
                   0x000380                  _DHT11_start
- .text            0x00038c          0x8 build/default/production/Timer1.o
+ .text            0x00038c          0x8 build/default/debug/Timer1.o
                   0x00038c                  _TIMER
