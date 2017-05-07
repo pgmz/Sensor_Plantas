@@ -70,6 +70,7 @@ typedef enum{
 
 uint8 ADC_init();
 void ADC_Start();
+uint16 ADC_Read_ANx(uint8 Read_ANx);
 uint8 ADC_Read_Done_Flag();
 void ADC_Clear_Done_Flag();
 uint16 ADC_Buffer();

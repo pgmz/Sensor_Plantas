@@ -8,8 +8,6 @@
       <itemPath>Data_Types_Definitions.h</itemPath>
       <itemPath>Secondary_Data_Types_Definitions.h</itemPath>
       <itemPath>config.h</itemPath>
-      <itemPath>DHT11_DD.h</itemPath>
-      <itemPath>Timer1.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,8 +18,6 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>ADC.c</itemPath>
-      <itemPath>DHT11_DD.c</itemPath>
-      <itemPath>Timer1.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -201,6 +197,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

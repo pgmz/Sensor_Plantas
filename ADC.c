@@ -35,8 +35,8 @@ uint8 ADC_init(){
     
     AD1PCFGL = ~AD1PCFGL_ANALOG_MODE;
     AD1PCFGLbits.PCFG0 = AD1PCFGL_ANALOG_MODE;
-    //AD1PCFGLbits.PCFG1 = AD1PCFGL_ANALOG_MODE;
-    //AD1PCFGLbits.PCFG2 = AD1PCFGL_ANALOG_MODE;
+    AD1PCFGLbits.PCFG1 = AD1PCFGL_ANALOG_MODE;
+    AD1PCFGLbits.PCFG4 = AD1PCFGL_ANALOG_MODE;
         
     //Select sample/conversion sequence AD1CON1 7-5, AD1CON3 12-8
     
@@ -58,13 +58,20 @@ uint8 ADC_init(){
 
 void ADC_Start(){
     AD1CON1bits.SAMP = AD1CON1_SAMP_ENABLE;
-    __delay_ms(10);
+    __delay_us(100);
     AD1CON1bits.SAMP = AD1CON1_CONV_START;
 
 }
 
 uint8 ADC_Read_Done_Flag(){
     return AD1CON1bits.DONE;
+}
+
+uint16 ADC_Read_ANx(uint8 Read_ANx){
+    AD1CHS0bits.CH0SA = Read_ANx;
+    ADC_Start();
+    while (AD1CON1_DONE_COMPLETED != ADC_Read_Done_Flag());
+    return ADC_Buffer();
 }
 
 void ADC_Clear_Done_Flag(){
@@ -74,3 +81,4 @@ void ADC_Clear_Done_Flag(){
 uint16 ADC_Buffer(){
     return (uint16)ADC1BUF0;
 }
+
