@@ -28,21 +28,19 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H
-#define	XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H
+#ifndef XC_DHT11_DRIVER_H
+#define	XC_DHT11_DRIVER_H
 
-
-#define FCY 20000000UL
-#include "libpic30.h"
+#include "PORT.h"
+#include "Secondary_Data_Types_Definitions.h"
 #include <xc.h> // include processor files - each processor file is guarded.  
 
-typedef struct{
-    char Sensor_ID;
-    float ADC_Sensor_Value;
-    char String_Sensor_Value[8];
-}Sensor_Data_Type;
+#define DHT11_READ_FAIL                 0
+#define DHT11_READ_SUCCESS              1
+#define DHT11_READ_CHECKSUM_ERROR       2
 
-void Float_To_String(float float_data, char char_data[8]);
+uint8 DHT11_driver_read();
+uint8 DHT11_Read(float * temp, float * hum);
 
-#endif	/* XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H */
+#endif	/* XC_DHT11_DRIVER_H */
 

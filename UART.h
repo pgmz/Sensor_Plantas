@@ -28,21 +28,34 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H
-#define	XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H
+#ifndef XC_UART_H
+#define	XC_UART_H
 
-
-#define FCY 20000000UL
-#include "libpic30.h"
 #include <xc.h> // include processor files - each processor file is guarded.  
+#include "Data_Types_Definitions.h"
+#include "Secondary_Data_Types_Definitions.h"
 
-typedef struct{
-    char Sensor_ID;
-    float ADC_Sensor_Value;
-    char String_Sensor_Value[8];
-}Sensor_Data_Type;
+#define BAUDRATE 9600
+#define BRGVAL ((FCY/BAUDRATE)/16)-1
 
-void Float_To_String(float float_data, char char_data[8]);
+#define U1TX        3
+#define U1RTS       4
 
-#endif	/* XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H */
+uint8 UART_init();
+void UART_printString(char *data);
+void UART_printString_Index(char data[], uint8 index);
+void UART_printChar(char data);
+
+#ifdef	__cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+    // TODO If C++ is being used, regular C code needs function names to have C 
+    // linkage so the functions can be used by the c code. 
+
+#ifdef	__cplusplus
+}
+#endif /* __cplusplus */
+
+#endif	/* XC_UART_H */
 

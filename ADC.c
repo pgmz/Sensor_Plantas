@@ -8,15 +8,12 @@
 
 
 #include "xc.h"
-
-#define FCY 20000000UL
-#include "libpic30.h"
 #include "ADC.h"
 
 
 uint8 ADC_init(){
     
-    AD1CON1bits.AD12B = AD1CON1_AD12B_10_BIT_4_CH;  //Determine 10-bit to 4 channel config of ADC
+    AD1CON1bits.AD12B = AD1CON1_AD12B_12_BIT_1_CH;  //Determine 10-bit to 4 channel config of ADC
     AD1CON2bits.CHPS = CH0;             //Select active channels
     AD1CON2bits.VCFG = AVDD_AVSS;                    //Select that low voltage reference is internal VSS
                                                     //Select that high voltage reference is internal VSS
