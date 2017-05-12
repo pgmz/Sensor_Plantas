@@ -9,7 +9,8 @@
 
 #include "xc.h"
 #include "ADC.h"
-
+#define FCY 20000000UL
+#include "libpic30.h"
 
 uint8 ADC_init(){
     

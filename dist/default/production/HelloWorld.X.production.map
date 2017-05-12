@@ -110,11 +110,12 @@ Program Memory  [Origin = 0x200, Length = 0xaa00]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x3e6           0x5d9  (1497)
-.text                        0x5e6               0x644           0x966  (2406)
-.dinit                       0xc2a                0x44            0x66  (102)
-.init.delay32                0xc6e                0x1c            0x2a  (42)
+.const                       0x5e6                0x12            0x1b  (27)
+.text                        0x5f8               0x5f4           0x8ee  (2286)
+.dinit                       0xbec                0x44            0x66  (102)
+.init.delay32                0xc30                0x1c            0x2a  (42)
 
-                 Total program memory used (bytes):          0xfcf  (4047) 6%
+                 Total program memory used (bytes):          0xf72  (3954) 6%
 
 
 Data Memory  [Origin = 0x800, Length = 0x4000]
@@ -122,10 +123,10 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0             0x2  (2)
-.data                        0x802                   0            0x46  (70)
-.bss                         0x848                   0             0x6  (6)
+.data                        0x802                   0            0x48  (72)
+.bss                         0x84a                   0             0x6  (6)
 
-                 Total data memory used (bytes):           0x4e  (78) <1%
+                 Total data memory used (bytes):           0x50  (80) <1%
 
 
 Dynamic Memory Usage
@@ -133,29 +134,31 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x84e                              0x3fb2  (16306)
+stack                        0x850                              0x3fb0  (16304)
 
-                 Maximum dynamic memory (bytes):         0x3fb2  (16306)
+                 Maximum dynamic memory (bytes):         0x3fb0  (16304)
 
 
 External Symbols in Data Memory (by address):
 
                     0x0800                  _i
                     0x0802                  _Sensor_Data
-                    0x0848                  _bits
+                    0x082c                  _DHT11_Data
+                    0x084a                  _bits
 
 External Symbols in Data Memory (by name):
 
+                    0x082c                  _DHT11_Data
                     0x0802                  _Sensor_Data
-                    0x0848                  _bits
+                    0x084a                  _bits
                     0x0800                  _i
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init_standard
                   0x000252                  __data_init
+                  0x000252                  __data_init_standard
                   0x0002c8                  __DefaultInterrupt
                   0x0002ce                  ___subsf3
                   0x0002d0                  ___addsf3
@@ -172,50 +175,50 @@ External Symbols in Program Memory (by address):
                   0x000500                  ___mulsf3
                   0x000568                  ___floatdisf
                   0x000588                  ___floatundisf
-                  0x0005e6                  _DHT11_driver_read
-                  0x000720                  _DHT11_Read
-                  0x0007c8                  _Float_To_String
-                  0x000960                  _PIN_TRIS_SET
-                  0x0009c0                  _PIN_LAT_SET
-                  0x000a20                  _PIN_PORT_READ
-                  0x000a68                  _main
-                  0x000b0c                  _ADC_init
-                  0x000b56                  _ADC_Start
-                  0x000b66                  _ADC_Read_Done_Flag
-                  0x000b72                  _ADC_Read_ANx
-                  0x000b98                  _ADC_Clear_Done_Flag
-                  0x000ba0                  _ADC_Buffer
-                  0x000ba8                  _UART_init
-                  0x000bf6                  _UART_printString
-                  0x000c10                  _UART_printChar
-                  0x000c6e                  ___delay32
+                  0x0005f8                  _Float_To_String
+                  0x000790                  _DHT11_driver_read
+                  0x0008b2                  _DHT11_Read_uint16
+                  0x000906                  _PIN_TRIS_SET
+                  0x000966                  _PIN_LAT_SET
+                  0x0009c6                  _PIN_PORT_READ
+                  0x000a0e                  _main
+                  0x000aca                  _ADC_init
+                  0x000b14                  _ADC_Start
+                  0x000b24                  _ADC_Read_Done_Flag
+                  0x000b30                  _ADC_Read_ANx
+                  0x000b56                  _ADC_Clear_Done_Flag
+                  0x000b5e                  _ADC_Buffer
+                  0x000b66                  _UART_init
+                  0x000bb8                  _UART_printString
+                  0x000bd2                  _UART_printChar
+                  0x000c30                  ___delay32
                   0xf80000                  __FBS.sec
                   0xf80002                  __FSS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x000ba0                  _ADC_Buffer
-                  0x000b98                  _ADC_Clear_Done_Flag
-                  0x000b72                  _ADC_Read_ANx
-                  0x000b66                  _ADC_Read_Done_Flag
-                  0x000b56                  _ADC_Start
-                  0x000b0c                  _ADC_init
-                  0x000720                  _DHT11_Read
-                  0x0005e6                  _DHT11_driver_read
-                  0x0007c8                  _Float_To_String
-                  0x0009c0                  _PIN_LAT_SET
-                  0x000a20                  _PIN_PORT_READ
-                  0x000960                  _PIN_TRIS_SET
-                  0x000ba8                  _UART_init
-                  0x000c10                  _UART_printChar
-                  0x000bf6                  _UART_printString
+                  0x000b5e                  _ADC_Buffer
+                  0x000b56                  _ADC_Clear_Done_Flag
+                  0x000b30                  _ADC_Read_ANx
+                  0x000b24                  _ADC_Read_Done_Flag
+                  0x000b14                  _ADC_Start
+                  0x000aca                  _ADC_init
+                  0x0008b2                  _DHT11_Read_uint16
+                  0x000790                  _DHT11_driver_read
+                  0x0005f8                  _Float_To_String
+                  0x000966                  _PIN_LAT_SET
+                  0x0009c6                  _PIN_PORT_READ
+                  0x000906                  _PIN_TRIS_SET
+                  0x000b66                  _UART_init
+                  0x000bd2                  _UART_printChar
+                  0x000bb8                  _UART_printString
                   0x0002c8                  __DefaultInterrupt
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
                   0xf80002                  __FSS.sec
                   0x0002d0                  ___addsf3
-                  0x000c6e                  ___delay32
+                  0x000c30                  ___delay32
                   0x00038a                  ___divsf3
                   0x00040e                  ___fixsfsi
                   0x000568                  ___floatdisf
@@ -234,7 +237,7 @@ External Symbols in Program Memory (by name):
                   0x0004d0                  __funpack2
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000a68                  _main
+                  0x000a0e                  _main
 
 Memory Configuration
 
@@ -407,33 +410,33 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x1f80
+.debug_info       0x000000       0x24e2
  *(.debug_info)
- .debug_info      0x000000        0x1d7 build/default/production/main.o
- .debug_info      0x0001d7        0xaec build/default/production/ADC.o
- .debug_info      0x000cc3        0xae3 build/default/production/UART.o
- .debug_info      0x0017a6        0x16d build/default/production/Secondary_Data_Types_Definitions.o
- .debug_info      0x001913        0x2e2 build/default/production/DHT11_driver.o
- .debug_info      0x001bf5        0x38b build/default/production/PORT.o
+ .debug_info      0x000000        0x2f0 build/default/production/main.o
+ .debug_info      0x0002f0        0xaec build/default/production/ADC.o
+ .debug_info      0x000ddc        0xae3 build/default/production/UART.o
+ .debug_info      0x0018bf        0x1ad build/default/production/Secondary_Data_Types_Definitions.o
+ .debug_info      0x001a6c        0x6eb build/default/production/DHT11_driver.o
+ .debug_info      0x002157        0x38b build/default/production/PORT.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x487
+.debug_abbrev     0x000000        0x4da
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x93 build/default/production/main.o
- .debug_abbrev    0x000093        0x116 build/default/production/ADC.o
- .debug_abbrev    0x0001a9        0x11b build/default/production/UART.o
- .debug_abbrev    0x0002c4         0x5d build/default/production/Secondary_Data_Types_Definitions.o
- .debug_abbrev    0x000321         0xcd build/default/production/DHT11_driver.o
- .debug_abbrev    0x0003ee         0x99 build/default/production/PORT.o
+ .debug_abbrev    0x000000         0xb3 build/default/production/main.o
+ .debug_abbrev    0x0000b3        0x116 build/default/production/ADC.o
+ .debug_abbrev    0x0001c9        0x11b build/default/production/UART.o
+ .debug_abbrev    0x0002e4         0x5d build/default/production/Secondary_Data_Types_Definitions.o
+ .debug_abbrev    0x000341        0x100 build/default/production/DHT11_driver.o
+ .debug_abbrev    0x000441         0x99 build/default/production/PORT.o
 
-.debug_line       0x000000        0x3f3
+.debug_line       0x000000        0x464
  *(.debug_line)
- .debug_line      0x000000         0x70 build/default/production/main.o
- .debug_line      0x000070         0xdd build/default/production/ADC.o
- .debug_line      0x00014d         0xc7 build/default/production/UART.o
- .debug_line      0x000214         0x65 build/default/production/Secondary_Data_Types_Definitions.o
- .debug_line      0x000279         0xa5 build/default/production/DHT11_driver.o
- .debug_line      0x00031e         0xd5 build/default/production/PORT.o
+ .debug_line      0x000000         0x90 build/default/production/main.o
+ .debug_line      0x000090         0xdd build/default/production/ADC.o
+ .debug_line      0x00016d         0xc8 build/default/production/UART.o
+ .debug_line      0x000235         0x65 build/default/production/Secondary_Data_Types_Definitions.o
+ .debug_line      0x00029a         0xf5 build/default/production/DHT11_driver.o
+ .debug_line      0x00038f         0xd5 build/default/production/PORT.o
 
 .debug_frame      0x000000        0x240
  *(.debug_frame)
@@ -444,11 +447,12 @@ __FUID3
  .debug_frame     0x00018c         0x4c build/default/production/DHT11_driver.o
  .debug_frame     0x0001d8         0x68 build/default/production/PORT.o
 
-.debug_str        0x000000         0x99
+.debug_str        0x000000         0xcb
  *(.debug_str)
- .debug_str       0x000000          0xc build/default/production/main.o
- .debug_str       0x00000c         0x59 build/default/production/ADC.o
- .debug_str       0x000065         0x34 build/default/production/UART.o
+ .debug_str       0x000000         0x21 build/default/production/main.o
+ .debug_str       0x000021         0x59 build/default/production/ADC.o
+ .debug_str       0x00007a         0x34 build/default/production/UART.o
+ .debug_str       0x0000ae         0x1d build/default/production/DHT11_driver.o
 
 .debug_loc
  *(.debug_loc)
@@ -457,20 +461,20 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x1a0
+                  0x000000        0x1b6
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x2b build/default/production/main.o
+                  0x000000         0x3a build/default/production/main.o
  .debug_pubnames
-                  0x00002b         0x7c build/default/production/ADC.o
+                  0x00003a         0x7c build/default/production/ADC.o
  .debug_pubnames
-                  0x0000a7         0x4e build/default/production/UART.o
+                  0x0000b6         0x4e build/default/production/UART.o
  .debug_pubnames
-                  0x0000f5         0x26 build/default/production/Secondary_Data_Types_Definitions.o
+                  0x000104         0x26 build/default/production/Secondary_Data_Types_Definitions.o
  .debug_pubnames
-                  0x00011b         0x40 build/default/production/DHT11_driver.o
+                  0x00012a         0x47 build/default/production/DHT11_driver.o
  .debug_pubnames
-                  0x00015b         0x45 build/default/production/PORT.o
+                  0x000171         0x45 build/default/production/PORT.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1467,76 +1471,77 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000090        0x228
+                  0x000090        0x2b7
  .debug_pubtypes
-                  0x000090         0x27 build/default/production/main.o
+                  0x000090         0x50 build/default/production/main.o
  .debug_pubtypes
-                  0x0000b7         0xd8 build/default/production/ADC.o
+                  0x0000e0         0xd8 build/default/production/ADC.o
  .debug_pubtypes
-                  0x00018f         0xbb build/default/production/UART.o
+                  0x0001b8         0xbb build/default/production/UART.o
  .debug_pubtypes
-                  0x00024a         0x12 build/default/production/Secondary_Data_Types_Definitions.o
+                  0x000273         0x12 build/default/production/Secondary_Data_Types_Definitions.o
  .debug_pubtypes
-                  0x00025c         0x1c build/default/production/DHT11_driver.o
+                  0x000285         0x82 build/default/production/DHT11_driver.o
  .debug_pubtypes
-                  0x000278         0x40 build/default/production/PORT.o
+                  0x000307         0x40 build/default/production/PORT.o
 
 __c30_signature
-                  0x0002b8         0x7e
+                  0x000347         0x7e
  __c30_signature
-                  0x0002b8          0x6 build/default/production/main.o
+                  0x000347          0x6 build/default/production/main.o
  __c30_signature
-                  0x0002be          0x6 build/default/production/ADC.o
+                  0x00034d          0x6 build/default/production/ADC.o
  __c30_signature
-                  0x0002c4          0x6 build/default/production/UART.o
+                  0x000353          0x6 build/default/production/UART.o
  __c30_signature
-                  0x0002ca          0x6 build/default/production/Secondary_Data_Types_Definitions.o
+                  0x000359          0x6 build/default/production/Secondary_Data_Types_Definitions.o
  __c30_signature
-                  0x0002d0          0x6 build/default/production/DHT11_driver.o
+                  0x00035f          0x6 build/default/production/DHT11_driver.o
  __c30_signature
-                  0x0002d6          0x6 build/default/production/PORT.o
+                  0x000365          0x6 build/default/production/PORT.o
  __c30_signature
-                  0x0002dc          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x00036b          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0002e2          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000371          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x0002e8          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000377          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
  __c30_signature
-                  0x0002ee          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+                  0x00037d          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(addsf3.eo)
  __c30_signature
-                  0x0002f4          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+                  0x000383          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(divsf3.eo)
  __c30_signature
-                  0x0002fa          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(fixsfsi.eo)
+                  0x000389          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(fixsfsi.eo)
  __c30_signature
-                  0x000300          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
+                  0x00038f          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
  __c30_signature
-                  0x000306          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                  0x000395          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
  __c30_signature
-                  0x00030c          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                  0x00039b          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(fpack.eo)
  __c30_signature
-                  0x000312          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                  0x0003a1          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(funpack.eo)
  __c30_signature
-                  0x000318          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x0003a7          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(funpack2.eo)
  __c30_signature
-                  0x00031e          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0003ad          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(futil.eo)
  __c30_signature
-                  0x000324          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                  0x0003b3          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
  __c30_signature
-                  0x00032a          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
+                  0x0003b9          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
  __c30_signature
-                  0x000330          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x0003bf          0x6 c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
 
 .nbss               0x0800          0x2
  .nbss              0x0800          0x2 build/default/production/UART.o
                     0x0800                  _i
 
-.data               0x0802         0x46
- .data              0x0802         0x46 build/default/production/main.o
+.data               0x0802         0x48
+ .data              0x0802         0x48 build/default/production/main.o
                     0x0802                  _Sensor_Data
+                    0x082c                  _DHT11_Data
 
-.bss                0x0848          0x6
- .bss               0x0848          0x6 build/default/production/DHT11_driver.o
-                    0x0848                  _bits
+.bss                0x084a          0x6
+ .bss               0x084a          0x6 build/default/production/DHT11_driver.o
+                    0x084a                  _bits
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
@@ -1556,33 +1561,37 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/main.o
 
-.text             0x0005e6        0x644
- .text            0x0005e6        0x1e2 build/default/production/DHT11_driver.o
-                  0x0005e6                  _DHT11_driver_read
-                  0x000720                  _DHT11_Read
- .text            0x0007c8        0x198 build/default/production/Secondary_Data_Types_Definitions.o
-                  0x0007c8                  _Float_To_String
- .text            0x000960        0x108 build/default/production/PORT.o
-                  0x000960                  _PIN_TRIS_SET
-                  0x0009c0                  _PIN_LAT_SET
-                  0x000a20                  _PIN_PORT_READ
- .text            0x000a68         0xa4 build/default/production/main.o
-                  0x000a68                  _main
- .text            0x000b0c         0x9c build/default/production/ADC.o
-                  0x000b0c                  _ADC_init
-                  0x000b56                  _ADC_Start
-                  0x000b66                  _ADC_Read_Done_Flag
-                  0x000b72                  _ADC_Read_ANx
-                  0x000b98                  _ADC_Clear_Done_Flag
-                  0x000ba0                  _ADC_Buffer
- .text            0x000ba8         0x82 build/default/production/UART.o
-                  0x000ba8                  _UART_init
-                  0x000bf6                  _UART_printString
-                  0x000c10                  _UART_printChar
+.const              0x85e6         0x12 load address 0x0005e6  
+ .const             0x85e6          0xc build/default/production/main.o
+ .const             0x85f2          0x6 build/default/production/UART.o
 
-.dinit            0x000c2a         0x44
- .dinit           0x000c2a         0x44 data_init
+.text             0x0005f8        0x5f4
+ .text            0x0005f8        0x198 build/default/production/Secondary_Data_Types_Definitions.o
+                  0x0005f8                  _Float_To_String
+ .text            0x000790        0x176 build/default/production/DHT11_driver.o
+                  0x000790                  _DHT11_driver_read
+                  0x0008b2                  _DHT11_Read_uint16
+ .text            0x000906        0x108 build/default/production/PORT.o
+                  0x000906                  _PIN_TRIS_SET
+                  0x000966                  _PIN_LAT_SET
+                  0x0009c6                  _PIN_PORT_READ
+ .text            0x000a0e         0xbc build/default/production/main.o
+                  0x000a0e                  _main
+ .text            0x000aca         0x9c build/default/production/ADC.o
+                  0x000aca                  _ADC_init
+                  0x000b14                  _ADC_Start
+                  0x000b24                  _ADC_Read_Done_Flag
+                  0x000b30                  _ADC_Read_ANx
+                  0x000b56                  _ADC_Clear_Done_Flag
+                  0x000b5e                  _ADC_Buffer
+ .text            0x000b66         0x86 build/default/production/UART.o
+                  0x000b66                  _UART_init
+                  0x000bb8                  _UART_printString
+                  0x000bd2                  _UART_printChar
 
-.init.delay32     0x000c6e         0x1c
- .init.delay32    0x000c6e         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x000c6e                  ___delay32
+.dinit            0x000bec         0x44
+ .dinit           0x000bec         0x44 data_init
+
+.init.delay32     0x000c30         0x1c
+ .init.delay32    0x000c30         0x1c c:/program files (x86)/microchip/xc16/v1.31/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x000c30                  ___delay32

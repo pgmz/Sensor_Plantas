@@ -26,13 +26,13 @@ void PIN_TRIS_SET(ePORT_Type port, ePIN_NUMBER_Type pin, uint8 state)
 void PIN_LAT_SET(ePORT_Type port, ePIN_NUMBER_Type pin, uint8 state){
         switch(port){
         case PORT_A:
-            LATA = LATA & ~(state << pin);
-            LATA = LATA | (state << pin);
+            LATA = PORTA & ~(state << pin);
+            LATA = PORTA | (state << pin);
             break;
             
         case PORT_B:
-            LATB = LATB & ~(state << pin);
-            LATB = LATB | (state << pin);
+            LATB = PORTB & ~(state << pin);
+            LATB = PORTB | (state << pin);
             break;
     }
 }

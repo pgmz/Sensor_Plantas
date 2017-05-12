@@ -40,7 +40,7 @@
 #define DHT11_READ_CHECKSUM_ERROR       2
 
 uint8 DHT11_driver_read();
-uint8 DHT11_Read(float * temp, float * hum);
+uint8 DHT11_Read_uint16(uint16 * temp, uint16 * hum);
 
 #endif	/* XC_DHT11_DRIVER_H */
 

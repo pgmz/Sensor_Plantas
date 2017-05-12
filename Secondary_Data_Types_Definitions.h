@@ -32,15 +32,26 @@
 #define	XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H
 
 
+#include "Data_Types_Definitions.h"
+#include <xc.h> // include processor files - each processor file is guarded.  
 #define FCY 20000000UL
 #include "libpic30.h"
-#include <xc.h> // include processor files - each processor file is guarded.  
 
 typedef struct{
     char Sensor_ID;
     float ADC_Sensor_Value;
     char String_Sensor_Value[8];
 }Sensor_Data_Type;
+
+typedef struct{
+    char Sensor_ID;
+    uint16 Humidity_uint16;
+    uint16 Temperature_uint16;
+    float Humidity_f;
+    float Temperature_f;
+    char String_Humidity_Value[8];
+    char String_Temperaure_Value[8];
+}DHT11_Data_Type;
 
 void Float_To_String(float float_data, char char_data[8]);
 
