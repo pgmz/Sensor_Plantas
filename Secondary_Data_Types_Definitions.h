@@ -38,22 +38,22 @@
 #include "libpic30.h"
 
 typedef struct{
-    char Sensor_ID;
+    uint8 Sensor_Status :2;
     float ADC_Sensor_Value;
-    char String_Sensor_Value[8];
+    char String_Sensor_Value[11];
 }Sensor_Data_Type;
 
 typedef struct{
-    char Sensor_ID;
+    uint8 Sensor_Status :2;
     uint16 Humidity_uint16;
     uint16 Temperature_uint16;
     float Humidity_f;
     float Temperature_f;
-    char String_Humidity_Value[8];
-    char String_Temperaure_Value[8];
+    char String_Humidity_Value[11];
+    char String_Temperaure_Value[11];
 }DHT11_Data_Type;
 
-void Float_To_String(float float_data, char char_data[8]);
+void Float_To_String(float float_data, char char_data[11]);
 
 #endif	/* XC_SECONDARY_DATA_TYPES_DEFINITIONS_HEADER_H */
 

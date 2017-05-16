@@ -46,6 +46,10 @@ uint8 PIN_PORT_READ(ePORT_Type port, ePIN_NUMBER_Type pin){
         case PORT_B:
             return (PIN_LOW == (PORTB & (1 << pin)))?(PIN_LOW):(PIN_HIGH);
             break;
+            
+        default:
+            return 0;
+            break;
 
     }
 }

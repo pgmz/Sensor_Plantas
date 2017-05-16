@@ -20,19 +20,19 @@ uint8 DHT11_driver_read() {
     uint8 aindex = 0;
     uint8 bcount = 7;        
     
-    TRISBbits.TRISB5 = 0;
-    LATBbits.LATB5 = 0;
+    TRISBbits.TRISB1 = 0;
+    LATBbits.LATB1 = 0;
     
     __delay_ms(20);
     
-    LATBbits.LATB5 = 1;
-    TRISBbits.TRISB5 = 1;
+    LATBbits.LATB1 = 1;
+    TRISBbits.TRISB1 = 1;
 
     __delay_us(60);
 
     // Wait for response from DHT11 max 80 uS low
 	TimeOut_Count = 1;
-	while (!PORTBbits.RB5) {
+	while (!PORTBbits.RB1) {
 		if (!TimeOut_Count++){
 			return DHT11_READ_FAIL;
         }
@@ -40,7 +40,7 @@ uint8 DHT11_driver_read() {
     
 	// Wait for response from DHT11 max 80 uS high
 	TimeOut_Count = 1;
-	while (PORTBbits.RB5) {
+	while (PORTBbits.RB1) {
 		if (!TimeOut_Count++){
 			return DHT11_READ_FAIL;
         }
@@ -48,13 +48,13 @@ uint8 DHT11_driver_read() {
     
     for(Bit_index = 0; Bit_index < 40; Bit_index++){
         TimeOut_Count = 1;
-        while (!PORTBbits.RB5) {
+        while (!PORTBbits.RB1) {
             if (!TimeOut_Count++)
                  return DHT11_READ_FAIL;
         }
 	// If after 50 uS the pin is low we're on the start of another bit
         __delay_us(40);
-        if (!PORTBbits.RB5) {
+        if (!PORTBbits.RB1) {
             if (bcount == 0) {
                 bcount = 7;
                 aindex++;
@@ -65,7 +65,7 @@ uint8 DHT11_driver_read() {
         }
 		// If pin is high after 50 us we're receiving logic high
 		TimeOut_Count = 1;
-		while (PORTBbits.RB5) {
+		while (PORTBbits.RB1) {
 			if (!TimeOut_Count++)
 				return DHT11_READ_FAIL;
 		}

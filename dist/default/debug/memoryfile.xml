@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/HelloWorld.X.production.elf">
+  <executable name="dist/default/debug/HelloWorld.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>16384</length>
-      <used>98</used>
-      <free>16286</free>
+      <used>178</used>
+      <free>16206</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>65280</length>
-      <used>4098</used>
-      <free>61182</free>
+      <used>4365</used>
+      <free>60915</free>
     </memory>
   </executable>
 </project>

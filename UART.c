@@ -23,10 +23,7 @@ uint8 UART_init() {
     U1MODEbits.UARTEN = 1; // Enable UART
     U1STAbits.UTXEN = 1; // Enable UART TX
     
-    RPINR18bits.U1RXR = BIT12;
-    RPINR18bits.U1CTSR = BIT13;
-    RPOR7bits.RP14R = U1TX;
-    RPOR7bits.RP15R = U1RTS;
+    RPOR4bits.RP8R = U1TX;
             
     /* Wait at least 105 microseconds (1/9600) before sending first char */
     __delay_us(105);

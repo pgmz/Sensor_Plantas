@@ -5,13 +5,13 @@
         <group>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/Secondary_Data_Types_Definitions.c</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/main.c</file>
-            <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/UART.h</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/config.h</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/DHT11_driver.h</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/DHT11_driver.c</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/Secondary_Data_Types_Definitions.h</file>
-            <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/UART.c</file>
             <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/ADC.c</file>
+            <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/PORT.c</file>
+            <file>file:/C:/Users/Patricio%20Gomez/MPLABXProjects/HelloWorld.X/UART.c</file>
         </group>
     </open-files>
 </project-private>

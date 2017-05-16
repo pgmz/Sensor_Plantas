@@ -22,65 +22,57 @@
 
 #define AN0_LM35                0
 #define AN1_LDR                 1
-#define AN4_YL69                4
+#define AN2_YL69                2
 
 #define LM35_INDEX              0
 #define LDR_INDEX               1
 #define YL69_INDEX              2
 
 Sensor_Data_Type Sensor_Data[3] = {
-    {'T', 0.0, "000.00\0"},{'L', 0.0, "000.00\0"},{'S', 0.0, "000.00\0"}
+    {'T', 0.0, "10000.00\r\n\0"},{'L', 0.0, "20000.00\r\n\0"},{'S', 0.0, "30000.00\r\n\0"}
 };
 
 DHT11_Data_Type DHT11_Data = {
-    'D', 0, 0, 0.0, 0.0, "000.00\0", "000.00\0"
+                        ///Humedad          //Temperatura
+    'D', 0, 0, 0.0, 0.0, "50000.00\r\n\0", "40000.00\r\n\0"
 };
+
+float LDR_lux(float Volt){
+    return (Volt < 1.64)?
+                (7339):
+                    ((Volt < 2.75)?
+                        (7339 - (Volt * 2277.2277)):
+                            (510 - (Volt * 154.28571)));
+}
 
 int main(void) {
       
     UART_init();
     ADC_init();
 
-    uint8 s;
-    
     for (;;) {
 
-        UART_printString("Que show");
-
         Sensor_Data[LM35_INDEX].ADC_Sensor_Value = LM35_TEMP(ADC_Read_ANx(AN0_LM35));
-        
-        Sensor_Data[LDR_INDEX].ADC_Sensor_Value = LDR_LUX(ADC_Read_ANx(AN1_LDR));
-      
-        Sensor_Data[YL69_INDEX].ADC_Sensor_Value = YL69_HUM(ADC_Read_ANx(AN4_YL69));
+        Sensor_Data[LDR_INDEX].ADC_Sensor_Value = LDR_lux(LDR_LUX(ADC_Read_ANx(AN1_LDR)));
+        Sensor_Data[YL69_INDEX].ADC_Sensor_Value = YL69_HUM(ADC_Read_ANx(AN2_YL69));
 
         Float_To_String(Sensor_Data[LM35_INDEX].ADC_Sensor_Value, Sensor_Data[LM35_INDEX].String_Sensor_Value);
-                
-        UART_printString(&Sensor_Data[LM35_INDEX].String_Sensor_Value[0]);
-        
         Float_To_String(Sensor_Data[LDR_INDEX].ADC_Sensor_Value, Sensor_Data[LDR_INDEX].String_Sensor_Value);
-                
-        UART_printString(&Sensor_Data[LDR_INDEX].String_Sensor_Value[0]);
-        
         Float_To_String(Sensor_Data[YL69_INDEX].ADC_Sensor_Value, Sensor_Data[YL69_INDEX].String_Sensor_Value);
-              
-        UART_printString(&Sensor_Data[YL69_INDEX].String_Sensor_Value[0]);
-        
-        s = DHT11_Read_uint16(&DHT11_Data.Temperature_uint16, &DHT11_Data.Humidity_uint16);
-        
-        Float_To_String(DHT11_Data.Temperature_uint16, DHT11_Data.String_Temperaure_Value);
-              
-        UART_printString(&DHT11_Data.String_Temperaure_Value[0]);
-                UART_printString("\n\r");
 
+        DHT11_Data.Sensor_Status = DHT11_Read_uint16(&DHT11_Data.Temperature_uint16, &DHT11_Data.Humidity_uint16);
+        Float_To_String(DHT11_Data.Temperature_uint16, DHT11_Data.String_Temperaure_Value);
         Float_To_String(DHT11_Data.Humidity_uint16, DHT11_Data.String_Humidity_Value);
-              
+
+
+        UART_printString(&Sensor_Data[LM35_INDEX].String_Sensor_Value[0]);
+        UART_printString(&Sensor_Data[LDR_INDEX].String_Sensor_Value[0]);
+        UART_printString(&Sensor_Data[YL69_INDEX].String_Sensor_Value[0]);
+        UART_printString(&DHT11_Data.String_Temperaure_Value[0]);
         UART_printString(&DHT11_Data.String_Humidity_Value[0]);
-                UART_printString("\n\r");
-                
-                
-                
+
         __delay_ms(1000);
-        __delay_ms(1000);
+
     }
 
     return 0;
